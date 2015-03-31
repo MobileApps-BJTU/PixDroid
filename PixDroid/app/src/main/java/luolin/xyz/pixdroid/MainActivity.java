@@ -15,7 +15,7 @@ package luolin.xyz.pixdroid;
 
 public class MainActivity extends ActionBarActivity {
 
-    String TITLES[] = {"Home","Favorite","Archive","Trash","Settings","Help"};
+    String TITLES[];
     int ICONS[] = {R.drawable.ic_home,R.drawable.ic_favorite,R.drawable.ic_archive,R.drawable.ic_trash,R.drawable.ic_settings,R.drawable.ic_help};
 
     String NAME = "Akash Bangad";
@@ -35,7 +35,13 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        TITLES = new String[]{
+                getString(R.string.home),
+                getString(R.string.favorite),
+                getString(R.string.archive),
+                getString(R.string.trash),
+                getString(R.string.settings),
+                getString(R.string.help)};
         toolbar = (Toolbar)findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
 

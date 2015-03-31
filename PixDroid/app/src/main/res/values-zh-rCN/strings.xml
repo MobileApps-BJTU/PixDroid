@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PixDroid</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="openDrawer">openDrawer</string>
+    <string name="closeDrawer">closeDrawer</string>
+
+    <string name="home">主页</string>
+    <string name="favorite">最爱</string>
+    <string name="archive">归档</string>
+    <string name="trash">垃圾箱</string>
+    <string name="settings">设置</string>
+    <string name="help">帮助</string>
+</resources>
