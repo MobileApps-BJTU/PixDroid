@@ -7,6 +7,7 @@ package luolin.xyz.pixdroid;
         import android.support.v7.widget.LinearLayoutManager;
         import android.support.v7.widget.RecyclerView;
         import android.support.v7.widget.Toolbar;
+        import android.util.Log;
         import android.view.Menu;
         import android.view.MenuItem;
         import android.view.View;
@@ -24,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
     private Toolbar toolbar;
 
     RecyclerView mRecyclerView;                           // Declaring RecyclerView
-    RecyclerView.Adapter mAdapter;                        // Declaring Adapter For Recycler View
+    MyAdapter mAdapter;                        // Declaring Adapter For Recycler View
     RecyclerView.LayoutManager mLayoutManager;            // Declaring Layout Manager as a linear layout manager
     DrawerLayout Drawer;                                  // Declaring DrawerLayout
 
@@ -43,6 +44,7 @@ public class MainActivity extends ActionBarActivity {
         mAdapter = new MyAdapter(TITLES,ICONS,NAME,EMAIL,PROFILE);
 
         mRecyclerView.setAdapter(mAdapter);
+        mAdapter.SetOnItemClickListener(adapterItemClickListener);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
@@ -64,6 +66,13 @@ public class MainActivity extends ActionBarActivity {
 
         Drawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
+
+        //CardView
+        getFragmentManager()
+                .beginTransaction()
+                .add(R.id.fragment_holder,new HomeFragment())
+                .addToBackStack(null)
+                .commit();
     }
 
 
@@ -88,4 +97,41 @@ public class MainActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onBackPressed() {
+        if(getFragmentManager().getBackStackEntryCount() > 0){
+            getFragmentManager().popBackStack();
+        }else{
+            super.onBackPressed();
+        }
+    }
+
+    public MyAdapter.OnItemClickListener adapterItemClickListener = new MyAdapter.OnItemClickListener() {
+        @Override
+        public void onItemClick(View view, int position) {
+            switch (position){
+                case 1:
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_holder, new HomeFragment())
+                            .addToBackStack(null)
+                            .commit();
+                    Drawer.closeDrawers();
+                    break;
+
+                case 2:
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_holder, new FavoriteFragment())
+                            .addToBackStack(null)
+                            .commit();
+                    Drawer.closeDrawers();
+                    break;
+
+                default:break;
+
+            }
+        }
+    };
 }
