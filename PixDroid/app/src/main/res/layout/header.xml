@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="16dp"
             android:textColor="#ffffff"
-            android:text="Akash Bangad"
+            android:text="Luo Lin"
             android:textSize="14sp"
             android:textStyle="bold"
 
@@ -36,7 +36,7 @@
             android:textColor="#ffffff"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="5dp"
-            android:text="akash.bangad93@gmail.com"
+            android:text="12301127@bjtu.edu.cn"
             android:textSize="14sp"
             android:textStyle="normal"
 

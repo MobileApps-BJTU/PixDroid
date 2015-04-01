@@ -1,5 +1,7 @@
 package luolin.xyz.pixdroid;
 
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +23,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     private String mNavTitles[]; // String Array to store the passed titles Value from MainActivity.java
     private int mIcons[];       // Int Array to store the passed icons resource value from MainActivity.java
 
+    public int getChosenFlag() {
+        return chosenFlag;
+    }
+
+    public void setChosenFlag(int chosenFlag) {
+        this.chosenFlag = chosenFlag;
+    }
+
+    private int chosenFlag = 1;
     private String name;        //String Resource for header View Name
     private int profile;        //int Resource for header view profile picture
     private String email;       //String Resource for header view email
@@ -130,7 +141,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
             // position by 1 and pass it to the holder while setting the text and image
             holder.textView.setText(mNavTitles[position - 1]); // Setting the Text with the array of our Titles
             holder.imageView.setImageResource(mIcons[position -1]);// Settimg the image with array of our icons
-
+            if(chosenFlag == position){
+                holder.textView.setTextColor(Color.parseColor("#3F51B5"));
+            }else {
+                holder.textView.setTextColor(Color.GRAY);
+            }
         }
         else{
 

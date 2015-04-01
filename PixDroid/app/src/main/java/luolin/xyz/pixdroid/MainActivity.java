@@ -14,14 +14,14 @@ package luolin.xyz.pixdroid;
 
 
 public class MainActivity extends ActionBarActivity {
-
     String TITLES[];
     int ICONS[] = {R.drawable.ic_home,R.drawable.ic_favorite,R.drawable.ic_archive,R.drawable.ic_trash,R.drawable.ic_settings,R.drawable.ic_help};
 
-    String NAME = "Akash Bangad";
-    String EMAIL = "akash.bangad@android4devs.com";
+    String NAME = "Luo Lin";
+    String EMAIL = "12301127@bjtu.edu.cn";
     int PROFILE = R.drawable.aka;
 
+    private int lastChosenFlag = 0;
     private Toolbar toolbar;
 
     RecyclerView mRecyclerView;                           // Declaring RecyclerView
@@ -35,6 +35,7 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         TITLES = new String[]{
                 getString(R.string.home),
                 getString(R.string.favorite),
@@ -115,8 +116,16 @@ public class MainActivity extends ActionBarActivity {
     public MyAdapter.OnItemClickListener adapterItemClickListener = new MyAdapter.OnItemClickListener() {
         @Override
         public void onItemClick(View view, int position) {
+            mAdapter.setChosenFlag(position);
+            mAdapter.notifyItemChanged(position);
+            if(lastChosenFlag != 0){
+                mAdapter.notifyItemChanged(lastChosenFlag);
+            }
+            lastChosenFlag = position;
             switch (position){
                 case 1:
+
+                    getSupportActionBar().setTitle(R.string.app_name);
                     getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_holder, new HomeFragment())
@@ -126,6 +135,7 @@ public class MainActivity extends ActionBarActivity {
                     break;
 
                 case 2:
+                    getSupportActionBar().setTitle(R.string.favorite);
                     getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_holder, new FavoriteFragment())

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -63,6 +64,10 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
         pics.remove(pos);
 
         notifyItemRemoved(pos);
+    }
+
+    public List<Picture> getPics(){
+        return this.pics;
     }
 
 

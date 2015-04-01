@@ -23,11 +23,12 @@ import java.util.List;
 public class HomeFragment extends Fragment implements SwipeDismissRecyclerViewTouchListener.DismissCallbacks {
 
     private CustomRecyclerView mRecyclerView;
-//    private SwipeRefreshLayout mSwipeRefreshLayout;
+
     private CustomAdapter mAdapter;
-    private String[] picNames = { "p1", "p2", "p3", "p4", "p5", "p6", "p7", "p8" };
     private SparseItemRemoveAnimator mSparseAnimator;
     private List<Picture> picList;
+    private int index =2;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -50,26 +51,9 @@ public class HomeFragment extends Fragment implements SwipeDismissRecyclerViewTo
         mSparseAnimator = new SparseItemRemoveAnimator();
         mRecyclerView.getRecyclerView().setItemAnimator(mSparseAnimator);
         mRecyclerView.setAdapter(mAdapter);
-        mAdapter.add(new Picture("p1"));
-        mAdapter.add(new Picture("p2"));
+        mAdapter.add(new Picture("pic1"));
         mRecyclerView.setRefreshListener(refreshListener);
         mRecyclerView.setRefreshingColorResources(R.color.customBlue,R.color.customBlue,R.color.customBlue,R.color.customBlue);
-
-        //mRecyclerView.getRecyclerView().setHasFixedSize(true);
-        //mRecyclerView.getRecyclerView().setAdapter(mAdapter);
-
-
-//        mSwipeRefreshLayout = mRecyclerView.getSwipeToRefresh();
-//        mSwipeRefreshLayout.setOnRefreshListener(refreshListener);
-//        mSwipeRefreshLayout.setColorSchemeResources(R.color.customBlue);
-//        mSwipeRefreshLayout.setDistanceToTriggerSync(400);// 设置手指在屏幕下拉多少距离会触发下拉刷新
-//        mSwipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
-
-       // mRecyclerView.setRefreshListener(refreshListener);
-
-
-
-
 
 
         return homeView;
@@ -82,8 +66,10 @@ public class HomeFragment extends Fragment implements SwipeDismissRecyclerViewTo
                     @Override
                     public void run() {
                         // 停止刷新
-                        mAdapter.insert(new Picture("p5"), 0);
+
+                        mAdapter.insert(new Picture("pic"+index), 0);
 //                        mSwipeRefreshLayout.setRefreshing(false);
+                        index =(index + 1) % 20 + 1;
                     }
                 }, 1500);
             }
@@ -97,11 +83,13 @@ public class HomeFragment extends Fragment implements SwipeDismissRecyclerViewTo
     @Override
     public void onDismiss(RecyclerView recyclerView, int[] reverseSortedPositions) {
         for (int position : reverseSortedPositions) {
-            mSparseAnimator.setSkipNext(true);
 
+            Repo.getInstance().ARCHIVE.add(mAdapter.getPics().get(position).getName());
+            mSparseAnimator.setSkipNext(true);
             mAdapter.remove(position);
 
         }
+
         Toast.makeText(getActivity(),R.string.to_archive,Toast.LENGTH_SHORT).show();
     }
 }
