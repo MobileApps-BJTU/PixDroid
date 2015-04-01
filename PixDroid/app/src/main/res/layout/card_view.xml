@@ -3,22 +3,70 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     card_view:cardBackgroundColor="@color/cardview_light_background"
     card_view:cardCornerRadius="2dp"
     android:elevation="2dp"
-    android:layout_marginBottom="16dp">
+    android:layout_marginTop="8dp"
+    >
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+       >
 
         <ImageView
             android:id="@+id/picture"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="300dp"
+            android:layout_centerInParent="true"
+            android:scaleType="centerCrop"
+            android:clickable="false" />
 
-    </LinearLayout>/
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            >
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Like"
+                android:background="#00000000"
+                />
+            <View
+                android:layout_width="2px"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:background="?android:attr/listDivider"
+            />
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Share"
+                android:background="#00000000"
+                />
+            <View
+                android:layout_width="2px"
+                android:layout_height="20dp"
+                android:layout_gravity="center_vertical"
+                android:background="?android:attr/listDivider"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Delete"
+                android:background="#00000000"
+                />
+
+            </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>

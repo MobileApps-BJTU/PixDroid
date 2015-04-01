@@ -38,8 +38,8 @@ public class HomeFragment extends Fragment {
         picList.add(new Picture("p3"));
         picList.add(new Picture("p4"));
         picList.add(new Picture("p5"));
-        picList.add(new Picture("p6"));
-        picList.add(new Picture("p7"));
+       // picList.add(new Picture("p6"));
+      //  picList.add(new Picture("p7"));
         super.onCreate(savedInstanceState);
     }
 
@@ -50,16 +50,15 @@ public class HomeFragment extends Fragment {
         View homeView = inflater.inflate(R.layout.fragment_home, container, false);
         mRecyclerView = (RecyclerView) homeView.findViewById(R.id.image_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity().getApplicationContext()));
-        mRecyclerView.setHasFixedSize(false);
+        mRecyclerView.setHasFixedSize(true);
         mAdapter = new CustomAdapter(this.getActivity(), picList);
         mRecyclerView.setAdapter(mAdapter);
 
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) homeView.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setOnRefreshListener(refreshListener);
-        mSwipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright, android.R.color.holo_green_light,
-                android.R.color.holo_orange_light, android.R.color.holo_red_light);
-        mSwipeRefreshLayout.setDistanceToTriggerSync(150);// 设置手指在屏幕下拉多少距离会触发下拉刷新
+        mSwipeRefreshLayout.setColorSchemeResources(R.color.customBlue);
+        mSwipeRefreshLayout.setDistanceToTriggerSync(400);// 设置手指在屏幕下拉多少距离会触发下拉刷新
         //mSwipeRefreshLayout.setProgressBackgroundColor(R.color.red);
 //        mSwipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
         mSwipeRefreshLayout.setSize(SwipeRefreshLayout.DEFAULT);
@@ -75,7 +74,7 @@ public class HomeFragment extends Fragment {
                         // 停止刷新
                         mSwipeRefreshLayout.setRefreshing(false);
                     }
-                }, 5000);
+                }, 2000);
             }
         };
 

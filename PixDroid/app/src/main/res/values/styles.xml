@@ -7,4 +7,5 @@
         <item name="colorPrimary">#3F51B5</item>
     </style>
 
+    <color name="customBlue">#3F51B5</color>
 </resources>
