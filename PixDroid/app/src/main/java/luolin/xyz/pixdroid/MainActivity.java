@@ -77,7 +77,6 @@ public class MainActivity extends ActionBarActivity {
         getFragmentManager()
                 .beginTransaction()
                 .add(R.id.fragment_holder,new HomeFragment())
-                .addToBackStack(null)
                 .commit();
     }
 

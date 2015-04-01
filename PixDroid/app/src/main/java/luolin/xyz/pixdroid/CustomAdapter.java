@@ -10,8 +10,6 @@ import android.widget.ImageView;
 
 import java.util.List;
 
-import luolin.xyz.pixdroid.model.Picture;
-
 /**
  * Created by wuyuanwei on 2015/3/30.
  */
@@ -50,4 +48,22 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
             mImageView = (ImageView) v.findViewById(R.id.picture);
         }
     }
+
+    public void add(Picture picture){
+        insert(picture, pics.size());
+    }
+
+    public void insert(Picture picture, int position){
+        pics.add(position,picture);
+        notifyItemInserted(position);
+    }
+
+    public void remove(int pos) {
+        Log.v("Remove", pics.get(pos).getName());
+        pics.remove(pos);
+
+        notifyItemRemoved(pos);
+    }
+
+
 }

@@ -12,4 +12,9 @@
     <string name="trash">垃圾箱</string>
     <string name="settings">设置</string>
     <string name="help">帮助</string>
+    <string name="to_archive">已归档</string>
+
+    <string name="like">喜欢</string>
+    <string name="share">分享</string>
+    <string name="delete">删除</string>
 </resources>
