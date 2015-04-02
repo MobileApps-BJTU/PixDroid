@@ -69,7 +69,7 @@ public class HomeFragment extends Fragment implements SwipeDismissRecyclerViewTo
 
                         mAdapter.insert(new Picture("pic"+index), 0);
 //                        mSwipeRefreshLayout.setRefreshing(false);
-                        index =(index + 1) % 20 + 1;
+                        index =(index) % 20 + 1;
                     }
                 }, 1500);
             }
