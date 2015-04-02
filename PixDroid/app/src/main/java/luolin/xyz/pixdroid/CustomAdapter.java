@@ -49,7 +49,9 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.ViewHolder
                 if(Repo.getInstance().LIKE.contains(picTemp.getName())){
                     viewHolder.likeBtn.setTextColor(Color.BLACK);
                     Repo.getInstance().LIKE.remove(picTemp.getName());
+                    pics.add(new Picture(picTemp.getName()));
                     Toast.makeText(v.getContext(), R.string.to_unlike, Toast.LENGTH_SHORT).show();
+
 
                 }else{
                     Repo.getInstance().LIKE.add(picTemp.getName());
