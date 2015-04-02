@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FavoriteFragment extends Fragment implements SwipeDismissRecyclerViewTouchListener.DismissCallbacks {
+public class ArchiveFragment extends Fragment implements SwipeDismissRecyclerViewTouchListener.DismissCallbacks{
 
     private CustomRecyclerView mRecyclerView;
 
@@ -28,7 +28,7 @@ public class FavoriteFragment extends Fragment implements SwipeDismissRecyclerVi
     private List<Picture> picList;
 //    private int index =2;
 
-    public FavoriteFragment() {
+    public ArchiveFragment() {
         // Required empty public constructor
     }
 
@@ -41,17 +41,17 @@ public class FavoriteFragment extends Fragment implements SwipeDismissRecyclerVi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View homeView = inflater.inflate(R.layout.fragment_favorite, container, false);
+        View homeView = inflater.inflate(R.layout.fragment_archive, container, false);
         picList = new ArrayList<Picture>();
         mAdapter = new CustomAdapter(homeView.getContext(), picList);
-        mRecyclerView = (CustomRecyclerView)homeView.findViewById(R.id.image_list_favorite);
+        mRecyclerView = (CustomRecyclerView)homeView.findViewById(R.id.image_list_archive);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(homeView.getContext()));
         mRecyclerView.setupSwipeToDismiss(this);
         mSparseAnimator = new SparseItemRemoveAnimator();
         mRecyclerView.getRecyclerView().setItemAnimator(mSparseAnimator);
         mRecyclerView.setAdapter(mAdapter);
-        for(int i=0;i<Repo.getInstance().LIKE.size();i++){
-            mAdapter.add(new Picture(Repo.getInstance().LIKE.get(i)));
+        for(int i=0;i<Repo.getInstance().ARCHIVE.size();i++){
+            mAdapter.add(new Picture(Repo.getInstance().ARCHIVE.get(i)));
         }
 
         //mRecyclerView.setRefreshListener(refreshListener);
@@ -86,15 +86,12 @@ public class FavoriteFragment extends Fragment implements SwipeDismissRecyclerVi
     public void onDismiss(RecyclerView recyclerView, int[] reverseSortedPositions) {
         for (int position : reverseSortedPositions) {
 
-            Repo.getInstance().LIKE.remove(mAdapter.getPics().get(position).getName());
-            if(!Repo.getInstance().ARCHIVE.contains(mAdapter.getPics().get(position).getName())) {
-                Repo.getInstance().ARCHIVE.add(mAdapter.getPics().get(position).getName());
-            }
+            Repo.getInstance().ARCHIVE.add(mAdapter.getPics().get(position).getName());
             mSparseAnimator.setSkipNext(true);
             mAdapter.remove(position);
 
         }
 
-        Toast.makeText(getActivity(), R.string.to_archive, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getActivity(), R.string.to_archive, Toast.LENGTH_SHORT).show();
     }
 }

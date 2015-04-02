@@ -21,7 +21,7 @@ public class MainActivity extends ActionBarActivity {
     String EMAIL = "12301127@bjtu.edu.cn";
     int PROFILE = R.drawable.aka;
 
-    private int lastChosenFlag = 0;
+    private int lastChosenFlag = 1;
     private Toolbar toolbar;
 
     RecyclerView mRecyclerView;                           // Declaring RecyclerView
@@ -97,9 +97,9 @@ public class MainActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+//        if (id == R.id.action_settings) {
+//            return true;
+//        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -139,6 +139,26 @@ public class MainActivity extends ActionBarActivity {
                     getFragmentManager()
                             .beginTransaction()
                             .replace(R.id.fragment_holder, new FavoriteFragment())
+                            .addToBackStack(null)
+                            .commit();
+                    Drawer.closeDrawers();
+                    break;
+
+                case 3:
+                    getSupportActionBar().setTitle(R.string.archive);
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_holder, new ArchiveFragment())
+                            .addToBackStack(null)
+                            .commit();
+                    Drawer.closeDrawers();
+                    break;
+
+                case 4:
+                    getSupportActionBar().setTitle(R.string.trash);
+                    getFragmentManager()
+                            .beginTransaction()
+                            .replace(R.id.fragment_holder, new TrashFragment())
                             .addToBackStack(null)
                             .commit();
                     Drawer.closeDrawers();

@@ -13,6 +13,8 @@
     <string name="settings">设置</string>
     <string name="help">帮助</string>
     <string name="to_archive">已归档</string>
+    <string name="to_like">我喜欢</string>
+    <string name="to_unlike">取消喜欢</string>
 
     <string name="like">喜欢</string>
     <string name="share">分享</string>
