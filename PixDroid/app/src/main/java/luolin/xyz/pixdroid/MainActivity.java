@@ -23,6 +23,11 @@ public class MainActivity extends ActionBarActivity {
 
     private int lastChosenFlag = 1;
     private Toolbar toolbar;
+    private HomeFragment homeFragment;
+    private FavoriteFragment favoriteFragment;
+    private ArchiveFragment archiveFragment;
+    private TrashFragment trashFragment;
+
 
     RecyclerView mRecyclerView;                           // Declaring RecyclerView
     MyAdapter mAdapter;                        // Declaring Adapter For Recycler View
@@ -74,10 +79,13 @@ public class MainActivity extends ActionBarActivity {
         Drawer.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
 
+        if(homeFragment == null){
+            homeFragment = new HomeFragment();
+        }
         //CardView
         getFragmentManager()
                 .beginTransaction()
-                .add(R.id.fragment_holder,new HomeFragment())
+                .add(R.id.fragment_holder,homeFragment)
                 .commit();
     }
 
@@ -126,9 +134,12 @@ public class MainActivity extends ActionBarActivity {
                 case 1:
 
                     getSupportActionBar().setTitle(R.string.app_name);
+                    if(homeFragment == null){
+                        homeFragment = new HomeFragment();
+                    }
                     getFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_holder, new HomeFragment())
+                            .replace(R.id.fragment_holder, homeFragment)
                             .addToBackStack(null)
                             .commit();
                     Drawer.closeDrawers();
@@ -136,9 +147,12 @@ public class MainActivity extends ActionBarActivity {
 
                 case 2:
                     getSupportActionBar().setTitle(R.string.favorite);
+                    if(favoriteFragment == null){
+                        favoriteFragment = new FavoriteFragment();
+                    }
                     getFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_holder, new FavoriteFragment())
+                            .replace(R.id.fragment_holder, favoriteFragment)
                             .addToBackStack(null)
                             .commit();
                     Drawer.closeDrawers();
@@ -146,9 +160,12 @@ public class MainActivity extends ActionBarActivity {
 
                 case 3:
                     getSupportActionBar().setTitle(R.string.archive);
+                    if(archiveFragment == null){
+                        archiveFragment = new ArchiveFragment();
+                    }
                     getFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_holder, new ArchiveFragment())
+                            .replace(R.id.fragment_holder, archiveFragment)
                             .addToBackStack(null)
                             .commit();
                     Drawer.closeDrawers();
@@ -156,9 +173,12 @@ public class MainActivity extends ActionBarActivity {
 
                 case 4:
                     getSupportActionBar().setTitle(R.string.trash);
+                    if(trashFragment == null){
+                        trashFragment = new TrashFragment();
+                    }
                     getFragmentManager()
                             .beginTransaction()
-                            .replace(R.id.fragment_holder, new TrashFragment())
+                            .replace(R.id.fragment_holder,trashFragment)
                             .addToBackStack(null)
                             .commit();
                     Drawer.closeDrawers();
